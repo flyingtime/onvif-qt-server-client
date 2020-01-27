@@ -58,6 +58,12 @@ A commercial use license is available from Genivia, Inc., contact@genivia.com
 #endif
 
 #include "stdsoap2.h"
+#if !defined(SOL_TCP) && defined(IPPROTO_TCP)
+#define SOL_TCP IPPROTO_TCP
+#endif
+#if !defined(TCP_KEEPIDLE) && defined(TCP_KEEPALIVE)
+#define TCP_KEEPIDLE TCP_KEEPALIVE
+#endif
 #if defined(VXWORKS) && defined(WM_SECURE_KEY_STORAGE)
 #include <ipcom_key_db.h>
 #endif

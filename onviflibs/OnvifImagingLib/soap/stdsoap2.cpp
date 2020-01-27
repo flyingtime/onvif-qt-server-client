@@ -256,6 +256,13 @@ static const char *soap_strerror(struct soap*);
 #define SOAP_TCP_SELECT_ERR 0x4
 #define SOAP_TCP_SELECT_ALL 0x7
 
+#if !defined(SOL_TCP) && defined(IPPROTO_TCP)
+#define SOL_TCP IPPROTO_TCP
+#endif
+#if !defined(TCP_KEEPIDLE) && defined(TCP_KEEPALIVE)
+#define TCP_KEEPIDLE TCP_KEEPALIVE
+#endif
+
 #if defined(WIN32)
   #define SOAP_SOCKBLOCK(fd) \
   { u_long blocking = 0; \
